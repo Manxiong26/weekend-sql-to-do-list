@@ -37,9 +37,10 @@ router.put('/:id', (req, res) => {
         console.log(`Updating task ${id} with `, task.status);
         // add conditional
         if (task.status === 'Incomplete') {
-            sqlText = `UPDATE messages SET status='Complete' WHERE id=$1;`
-        } else {
-            sqlText = `UPDATE messages SET status='Incomplete' WHERE id=$1;`
+            sqlText = `UPDATE taskslist SET status='Complete' WHERE id=$1;`
+         } 
+        else {
+            sqlText = `UPDATE taskslist SET status='Incomplete' WHERE id=$1;`
         }
         pool.query(sqlText, [id])
             .then((result) => {
