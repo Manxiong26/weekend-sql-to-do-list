@@ -18,3 +18,16 @@ function refresh() {
         });
     }
 
+    function addTask(taskToAdd) {
+        $.ajax({
+            type: 'POST',
+            url: '/taskslist',
+            data: taskToAdd,
+        }).then(function (response) {
+            console.log('Response from server.', response);
+            refresh();
+        }).catch(function (error) {
+            console.log('Error in POST', error)
+            alert('Unable to add task! Try Again Later');
+        });
+    }
