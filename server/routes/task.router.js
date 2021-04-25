@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
             });
     });
 
-    router.post('/', (req, res) => {
+router.post('/', (req, res) => {
         let newTask = req.body; 
         console.log(`Adding task`, newTask); 
-        let queryText = `INSERT INTO messages ("task") 
+        let queryText = `INSERT INTO taskslist ("task") 
                        VALUES ($1);`;  
         pool.query(queryText, [newTask.task]) 
             .then(result => {
@@ -30,6 +30,26 @@ router.get('/', (req, res) => {
             });
     });
 
+router.put('/:id', (req, res) => {
+        let task = req.body; 
+        let id = req.params.id; 
+        let sqlText = '';
+        console.log(`Updating task ${id} with `, task.status);
+        // add conditional
+        if (task.status === 'Incomplete') {
+            sqlText = `UPDATE messages SET status='Complete' WHERE id=$1;`
+        } else {
+            sqlText = `UPDATE messages SET status='Incomplete' WHERE id=$1;`
+        }
+        pool.query(sqlText, [id])
+            .then((result) => {
+                res.sendStatus(200);
+            })
+            .catch((error) => {
+                console.log('Error from db:', error);
+                res.sendStatus(500);
+            })
+    });
 
 
 
