@@ -4,7 +4,19 @@ $(document).ready(onReady);
 
 function onReady(){
         console.log('hi jQ');
+        $('#btn-submit').on('click', submit);
+        $('#taskList').on('click', '.btn-do', putTask);
+        $('#taskList').on('click', '.btn-delete', deleteTask);
+        refresh();
 }
+
+function submit() {
+        console.log('Submit button clicked.');
+        let msg = {
+            task: $('#input').val()
+        }
+        addTask(msg);
+    }
 
 function refresh() {
         $.ajax({
@@ -12,7 +24,7 @@ function refresh() {
             url: '/taskslist'
         }).then(function (response) {
             console.log(response);
-            //renderTasks(response);
+            renderTasks(response);
         }).catch(function (error) {
             console.log('error in GET', error);
         });
@@ -49,6 +61,25 @@ function refresh() {
             res.sendStatus(500);
         })
     }
+
+    function deleteTask(event) {
+            event.preventDefault();
+            console.log('Deleted task..');
+            let task = $(this).closest('tr').data('message');
+            console.log('Task selected is:', task);
+            $(this).closest('tr').empty();
+            $.ajax({
+                    method: 'DELETE',
+                    url: `/taskslist/${task.id}`
+                })
+                .then(function (response) {
+                    refresh();
+                })
+                .catch(function (error) {
+                    console.log('Error', error);
+                    alert('ERROR! Try again.');
+                })
+        }
 
     function renderTasks(tasks) {
         console.log('Rendering task to DOM');
