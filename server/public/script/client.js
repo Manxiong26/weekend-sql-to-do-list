@@ -4,9 +4,9 @@ $(document).ready(onReady);
 
 function onReady(){
         console.log('hi jQ');
-        $('#btn-submit').on('click', submit);
-        $('#taskList').on('click', '.btn-do', putTask);
-        $('#taskList').on('click', '.btn-delete', deleteTask);
+        $('#btn-submit').on('click', submit);// to submit tasks
+        $('#taskList').on('click', '.btn-do', putTask);//to put in the DOM 
+        $('#taskList').on('click', '.btn-delete', deleteTask);//to delete from the DOM 
         refresh();
 }
 
@@ -83,10 +83,11 @@ function refresh() {
 
     function renderTasks(tasks) {
         console.log('Rendering task to DOM');
-        $('#taskList').empty();
+        $('#taskList').empty();// start of with emptying the list 
         for (let i = 0; i < tasks.length; i++) {
             let message = tasks[i];
             console.log('--------', message.status); 
+            //storing message.statues in the tr
             let ntask = $(`<tr class="${message.status} task"></tr>`);
        
             let textBtn = '';

@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
-    // select from messages table database will show us an updated list of tasks
+    // select from taskslist table database will show us an updated list of tasks
         let queryText = 'SELECT * FROM taskslist ORDER BY "task";';
         pool.query(queryText).then(result => {
                 // Sends back the results in an object
@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
         let newTask = req.body; 
         console.log(`Adding task`, newTask); 
+        //inserting to taskslist in sql for value is changed to $1.
         let queryText = `INSERT INTO taskslist ("task") 
                        VALUES ($1);`;  
         pool.query(queryText, [newTask.task]) 
@@ -35,7 +36,7 @@ router.put('/:id', (req, res) => {
         let id = req.params.id; 
         let sqlText = '';
         console.log(`Updating task ${id} with `, task.status);
-        // add conditional
+        // add conditional to change the status from incomplete to complete vice versa using the button
         if (task.status === 'Incomplete') {
             sqlText = `UPDATE taskslist SET status='Complete' WHERE id=$1;`
          } 
@@ -55,6 +56,7 @@ router.put('/:id', (req, res) => {
     router.delete('/:id', (req, res) => {
         let id = req.params.id;
         console.log('-------------------- ID:', id);
+        // deleting from id to ensure the task is deleted
         let sqlText = `DELETE FROM taskslist WHERE id=$1;`;
         pool.query(sqlText, [id])
             .then((result) => {
