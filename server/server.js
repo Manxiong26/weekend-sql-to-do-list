@@ -12,7 +12,8 @@ app.use(express.static('server/public'));
 const taskRouter = require ('./routes/task.router.js')
 app.use('/taskslist', taskRouter)
 
-const PORT = 5000;
+//Setup PORT for heroku - will get the # from the process environment
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('tasks is up and running on port', PORT);
     
