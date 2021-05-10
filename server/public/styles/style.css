@@ -1,5 +1,9 @@
 body {
-    background-color: rgba(210, 210, 215, 0.961);
+    background-color: rgb(248, 245, 149);
+    background-image: url(https://image.freepik.com/free-vector/cute-rabbit-with-duck-working-laptop-cartoon-illustration_56104-471.jpg);
+    background-position: top-left;
+    background-repeat: no-repeat;
+    background-size: 7cm;
     margin: auto;
     max-width: max-content;
     font-family: 'Lora', serif;
@@ -13,18 +17,18 @@ header {
     margin-bottom: 3rem;
     text-align: center;
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.563);
-    background-color: rgb(100, 142, 179);
+    background-color: rgb(236, 126, 126);
 }
 
 main {
-    padding: 5rem;
-    margin-top: 5rem;
+    padding: 6rem;
+    margin-top: 3rem;
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.563);
-    background-color: rgb(29, 82, 128);
+    background-color: rgb(252, 249, 248);
 }
 
 button.Complete {
-    background-color: rgb(53, 62, 187);
+    background-color: rgb(204, 39, 17);
     align-self: center;
 
 }
@@ -37,14 +41,14 @@ button.Complete {
 button {
     border-radius: 0.5rem;
     margin: auto 0;
-    background-color: cornflowerblue;
+    background-color: rgb(236, 198, 230);
 }
 
 #btn-submit {
     border-radius: 1rem;
     width: max-content;
     margin: auto 1rem;
-    background-color: lightblue;
+    background-color: rgb(231, 199, 224);
 }
 
 p {
